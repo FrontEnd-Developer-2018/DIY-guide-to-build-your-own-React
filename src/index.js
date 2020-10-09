@@ -40,6 +40,8 @@ const appSimpleElement = {
 const appSimpleWithChildrenElement = {
     type: "div",
     props: {
+        style: "background-color: antiquewhite;border: 1px solid;width: 200px;height: 30px;",
+        className: "my-class-root",
         children: [
             {
                 type: "div",
@@ -47,19 +49,49 @@ const appSimpleWithChildrenElement = {
                     className: "my-class-1",
                     style: "background-color: red;border: 1px solid;width: 100px;height: 10px;",
                     onClick: (e) => console.log('clicked ==> ' + e)
-                },
+                }
+            },
+            {
                 type: "div",
                 props: {
-                    className: "my-class-2",
-                    style: "background-color: green;border: 1px solid;width: 100px;height: 10px;",
-                    onClick: (e) => console.log('clicked ==> ' + e)
+                    "className": "my-class-2",
+                    "style": "background-color: green;border: 1px solid;width: 100px;height: 10px;",
+                    "onClick": (e) => console.log('clicked ==> ' + e)
                 }
             }
         ]
     }
 }
 
-myFristSimpleWithChildrenRender(appSimpleWithChildrenElement, document.getElementById("root"));
+//myFristSimpleWithChildrenRender(appSimpleWithChildrenElement, document.getElementById("root"));
+
+
+
+
+
+/*
+ThisExampleElementAbove with HTML :
+
+<div id="container">
+  <input value="foo" type="text">
+  <a href="/bar"></a>
+  <span></span>
+</div>
+
+The Description with Element object
+*/
+
+const ThisExampleElementAbove = {
+    type: "div",
+    props: {
+        id: "container",
+        children: [
+            { type: "input", props: { value: "foo", type: "text" } },
+            { type: "a", props: { href: "/bar" } },
+            { type: "span", props: {} }
+        ]
+    }
+};
 
 const appElement = {
     type: "div",
@@ -101,3 +133,9 @@ function storyElement({ name, url }) {
         }
     };
 }
+
+
+//render(appSimpleWithChildrenElement, document.getElementById("root"))
+
+
+const appElement = <div><ul>{stories.map(storyElement)}</ul></div>;
