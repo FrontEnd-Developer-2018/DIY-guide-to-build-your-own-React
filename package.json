@@ -1,0 +1,19 @@
+{
+  "name": "diy-guide-to-build-your-own-react",
+  "version": "1.0.0",
+  "description": "https://engineering.hexacta.com/didact-learning-how-react-works-by-building-it-from-scratch-51007984e5c5",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": [
+    "javascript",
+    "starter"
+  ]
+}
