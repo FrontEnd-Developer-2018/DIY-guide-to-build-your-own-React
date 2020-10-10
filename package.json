@@ -7,10 +7,13 @@
     "start": "parcel index.html --open",
     "build": "parcel build index.html"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4"
+  },
   "devDependencies": {
-    "@babel/core": "7.2.0",
-    "parcel-bundler": "^1.6.1"
+    "@babel/core": "^7.11.4",
+    "parcel-bundler": "^1.6.1",
+    "style-loader": "^1.2.1"
   },
   "keywords": [
     "javascript",

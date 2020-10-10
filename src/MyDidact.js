@@ -111,7 +111,7 @@ The only thing we need to add to Didact to support JSX is a createElement functi
 
 //https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYewdgzgLgBApgGzgWzmWBeGAKAUDGAHgBMBLANxlOIwCJR0BDUsOAJ1oD58CiWAHAK6xyjBILh0AZiBC0YUAJ79JtKHAAeUeQHpuvIoxgALNnCl0dAI0YdONtoR2N9vQhH6MwMcAGEEpMAA1hgA3nAwGJwwYuxQ2LQAEqS0AJQAvpzAAcEwqE4eXq5OZOTcqQDcQA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=true&sourceType=module&lineWrap=false&presets=es2015%2Ces2016%2Ces2017%2Creact%2Cstage-0%2Cstage-1%2Cstage-2%2Cstage-3%2Ces2015-loose%2Ctypescript%2Cflow&prettier=true&targets=&version=7.11.6&externalPlugins=
 
-function createElement_draft(type, config, ...args) {
+export function createElement_draft(type, config, ...args) {
   const props = Object.assign({}, config);
   const hasChildren = args.length > 0;
   props.children = hasChildren ? [].concat(...args) : [];
@@ -121,10 +121,10 @@ function createElement_draft(type, config, ...args) {
 // The function above  works well except from one thing: text elements
 
 const TEXT_ELEMENT = "TEXT ELEMENT";
-function createTextElement(value) {
+ function createTextElement(value) {
   return createElement(TEXT_ELEMENT, { nodeValue: value });
 }
-function createElement(type, config, ...args) {
+export function createElement(type, config, ...args) {
   const props = Object.assign({}, config);
   const hasChildren = args.length > 0;
   const rawChildren = hasChildren ? [].concat(...args) : [];
@@ -134,3 +134,36 @@ function createElement(type, config, ...args) {
   return { type, props };
 }
 
+
+
+function renderxxxx(element, parentDom) {  
+  
+  // ...
+  // Create dom from element
+  // ...
+  
+  // Append or replace dom
+  if (!parentDom.lastChild) {
+    parentDom.appendChild(dom);     
+  } else {
+    parentDom.replaceChild(dom, parentDom.lastChild);    
+  }
+}  
+
+
+/*
+
+For us to do the same, first we need to preserve the previous rendered tree so we can compare it with the new tree.
+In other words, we are going to maintain our own version of the DOM, a virtual DOM.
+
+What should be the “nodes” in this virtual DOM? One option would be to just use Didact Elements, 
+they already have a props.children property that allow us to navigate them as a tree. 
+But there are two problems, one is that we need to keep a reference to the real dom node 
+on each node of the virtual DOM in order to make the reconciliation easier, and we prefer 
+to keep the elements immutable. The second problem is that (later) we will need to support 
+Components, which have their own state, and elements won’t be able to handle it.
+
+So we need to introduce a new term: instances. An instance represents an element that
+has been rendered to the DOM. It’s a plain JS object that has three properties: element, dom, and
+childInstances. childInstances is an array with the instances of the children of the element.
+*/

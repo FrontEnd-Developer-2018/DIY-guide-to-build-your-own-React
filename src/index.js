@@ -1,5 +1,7 @@
+/** @jsx createElement */
+
 import { render } from "./Didact";
-import { myFristSimpleRender, myFristSimpleWithChildrenRender } from "./MyDidact"
+import { myFristSimpleRender, myFristSimpleWithChildrenRender , createElement } from "./MyDidact"
 
 const stories = [
     { name: "Didact introduction", url: "http://bit.ly/2pX7HNn" },
@@ -65,7 +67,15 @@ const appSimpleWithChildrenElement = {
 
 //myFristSimpleWithChildrenRender(appSimpleWithChildrenElement, document.getElementById("root"));
 
+const ThisExampleElementAbove_withJSX = (
+    <div id="container">
+        <input value="foo" type="text" />
+        <a href="/bar"></a>
+        <span></span>
+    </div>
+)
 
+myFristSimpleWithChildrenRender(ThisExampleElementAbove_withJSX, document.getElementById("root"));
 
 
 
@@ -138,4 +148,4 @@ function storyElement({ name, url }) {
 //render(appSimpleWithChildrenElement, document.getElementById("root"))
 
 
-const appElement = <div><ul>{stories.map(storyElement)}</ul></div>;
+
